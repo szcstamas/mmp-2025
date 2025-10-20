@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-paper: #f6e7d2;
+  --color-tint: #211d14;
+}
+
+@font-face {
+  font-family: "Libre Baskerville Regular";
+  src: url("./assets/fonts/LibreBaskerville-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Libre Baskerville Italic";
+  src: url("./assets/fonts/LibreBaskerville-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Libre Baskerville Bold";
+  src: url("./assets/fonts/LibreBaskerville-Bold.ttf");
+  font-weight: 400;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk Regular";
+  src: url("./assets/fonts/SpaceGrotesk-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk Bold";
+  src: url("./assets/fonts/SpaceGrotesk-Bold.ttf");
+  font-weight: 400;
+  font-style: oblique;
+}
+
 @layer base {
   * {
     padding: 0;
@@ -10,7 +50,36 @@
   }
 
   body {
-    background-color: rgb(0, 0, 0, 0.8);
-    color: white;
+    background-color: var(--color-paper);
+    background-image: url("/public/img/body-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: lighten;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Libre Baskerville Bold", Arial, Helvetica, sans-serif;
+  }
+
+  p,
+  span,
+  a,
+  button {
+    font-family: "SpaceGrotesk Regular", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    cursor: default;
   }
 }

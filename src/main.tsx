@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     {/* <Provider store={store}> */}
     <BrowserRouter>
       <Header />
-      <main className="body max-w-[1200px] w-full mx-auto scroll-smooth min-h-[calc(100vh-120px)] flex flex-col gap-12 justify-between items-center my-12">
+      <main className="body max-w-[1200px] w-full mx-auto scroll-smooth min-h-[calc(100vh-120px)] flex flex-col gap-12 justify-between items-center my-24">
         <App />
       </main>
       <Footer />
