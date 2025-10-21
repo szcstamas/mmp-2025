@@ -15,13 +15,15 @@ export const clues = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam reprehenderit atque aperiam veniam commodi cupiditate in laborum maxime exipsa!",
     location: "Dolgozószoba",
-    image: Hammer,
+    image: Letter,
+    requires: "Fehér toll",
   },
   {
     title: "Kalapács",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam reprehenderit atque aperiam veniam commodi cupiditate in laborum maxime exipsa!",
     location: "Műhely",
-    image: Letter,
+    image: Hammer,
+    requires: "Üzbég levél",
   },
 ];

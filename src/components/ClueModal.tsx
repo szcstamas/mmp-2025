@@ -13,16 +13,30 @@ const ClueModal: React.FC<ClueModalProps> = ({
   addItem,
   onClose,
 }) => {
-  const { title, description, location } = clue;
+  const { title, description, location, image } = clue;
 
   return (
     <div
       key={title}
-      className="relative bg-paper p-6 rounded-2xl shadow-lg text-tint max-w-sm"
+      className="relative bg-paper p-6 rounded-2xl shadow-lg text-tint max-w-md"
     >
-      <h2 className="text-3xl font-semibold mb-4">{title}</h2>
-      <p className="text-sm opacity-80 mb-2">{description}</p>
-      <p className="text-xs text-gray-600 italic mb-4">Helyszín: {location}</p>
+      <div className="flex justify-between items-start gap-4">
+        <div className="flex-1">
+          <h2 className="text-3xl font-semibold mb-4">{title}</h2>
+          <p className="text-sm opacity-80 mb-2">{description}</p>
+          <p className="text-xs text-gray-600 italic mb-4">
+            Helyszín: {location}
+          </p>
+        </div>
+        <div className="flex-1">
+          <img
+            src={image}
+            alt=""
+            className="rounded-lg shadow-2xl border-2 border-tint"
+          />
+        </div>
+      </div>
+
       {found ? (
         <button
           disabled
@@ -40,7 +54,7 @@ const ClueModal: React.FC<ClueModalProps> = ({
       )}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-tint  border-tint bg-paper text-xl flex justify-center items-center p-6 rounded-full border-2 w-8 h-8 transition-all hover:bg-tint hover:text-paper"
+        className="absolute top-4 right-4 text-tint border-tint bg-paper text-xl flex justify-center items-center p-6 rounded-full border-2 w-8 h-8 transition-all hover:bg-tint hover:text-paper"
       >
         ✖
       </button>

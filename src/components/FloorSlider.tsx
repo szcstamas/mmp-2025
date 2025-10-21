@@ -9,6 +9,8 @@ import ChevronLeftIcon from "./icons/ChevronLeftIcon";
 import ChevronRightIcon from "./icons/ChevronRightIcon";
 import QuestionMark from "./icons/QuestionMark";
 import CheckmarkIcon from "./icons/CheckmarkIcon";
+import HintToast from "./HintToast";
+import { clueReactions } from "../constants/clueReactions";
 
 const variants = {
   enter: (direction: number) => ({
@@ -37,6 +39,7 @@ const FloorSlider = () => {
   } | null>(null);
   const handleClose = () => setSelectedClue(null);
   const { addItem, hasItem } = useBag();
+  const [showHint, setShowHint] = useState<string | null>(null);
 
   const next = () => {
     setDirection(1);
@@ -45,6 +48,26 @@ const FloorSlider = () => {
   const prev = () => {
     setDirection(-1);
     setIndex((prev) => (prev - 1 + floorImages.length) % floorImages.length);
+  };
+  const handleAddItem = (clue: any) => {
+    addItem(clue);
+
+    const reaction = clueReactions[clue.title];
+    if (reaction) {
+      setShowHint(reaction);
+      setTimeout(() => setShowHint(null), 3500);
+    }
+
+    // const newlyUnlocked = floors[index].clues.find(
+    //   (c) => c.clue.requires === clue.title && !hasItem(c.clue.title)
+    // );
+
+    // if (newlyUnlocked) {
+    //   setTimeout(() => {
+    //     setShowHint(`Új nyom elérhető: ${newlyUnlocked.clue.title}! 🕵️`);
+    //     setTimeout(() => setShowHint(null), 3500);
+    //   }, 3500);
+    // }
   };
 
   return (
@@ -80,43 +103,45 @@ const FloorSlider = () => {
               />
             </div>
 
-            {floors[index].clues.map((c) => {
-              const found = hasItem(c.clue.title);
+            {floors[index].clues
+              .filter((c) => !c.clue.requires || hasItem(c.clue.requires))
+              .map((c) => {
+                const found = hasItem(c.clue.title);
 
-              return (
-                <div
-                  key={c.clue.title}
-                  className="absolute flex items-center justify-center"
-                  style={{ top: c.top, left: c.left }}
-                >
-                  <span
-                    className={`absolute inline-flex w-5 h-5 rounded-full ${
-                      found ? "bg-green-500" : "bg-paper"
-                    } opacity-50 animate-ping`}
-                  />
+                return (
                   <div
-                    className={`group relative w-5 h-5 rounded-full border-2 border-tint cursor-pointer transition-all duration-500 ${
-                      found ? "bg-green-500" : "bg-paper"
-                    } hover:border-tint hover:scale-[2.5]`}
-                    onClick={() => setSelectedClue(c)}
+                    key={c.clue.title}
+                    className="absolute flex items-center justify-center"
+                    style={{ top: c.top, left: c.left }}
                   >
-                    {found ? (
-                      <CheckmarkIcon
-                        className="absolute fill-tint pointer-events-none opacity-0 transition-all duration-1000 scale-0 group-hover:opacity-100 group-hover:scale-[0.35] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-                        width="25px"
-                        height="25px"
-                      />
-                    ) : (
-                      <QuestionMark
-                        className="absolute fill-tint pointer-events-none opacity-0 transition-all duration-1000 scale-0 group-hover:opacity-100 group-hover:scale-[0.35] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-                        width="25px"
-                        height="25px"
-                      />
-                    )}
+                    <span
+                      className={`absolute inline-flex w-5 h-5 rounded-full ${
+                        found ? "bg-green-500" : "bg-paper"
+                      } opacity-50 animate-ping`}
+                    />
+                    <div
+                      className={`group relative w-5 h-5 rounded-full border-2 border-tint cursor-pointer transition-all duration-500 ${
+                        found ? "bg-green-500" : "bg-paper"
+                      } hover:border-tint hover:scale-[2.5]`}
+                      onClick={() => setSelectedClue(c)}
+                    >
+                      {found ? (
+                        <CheckmarkIcon
+                          className="absolute fill-tint pointer-events-none opacity-0 transition-all duration-1000 scale-0 group-hover:opacity-100 group-hover:scale-[0.35] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                          width="25px"
+                          height="25px"
+                        />
+                      ) : (
+                        <QuestionMark
+                          className="absolute fill-tint pointer-events-none opacity-0 transition-all duration-1000 scale-0 group-hover:opacity-100 group-hover:scale-[0.35] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                          width="25px"
+                          height="25px"
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </motion.div>
         </AnimatePresence>
 
@@ -166,7 +191,7 @@ const FloorSlider = () => {
                 <ClueModal
                   clue={selectedClue.clue}
                   found={hasItem(selectedClue.clue.title)}
-                  addItem={addItem}
+                  addItem={handleAddItem}
                   onClose={handleClose}
                 />
               </motion.div>
@@ -174,6 +199,7 @@ const FloorSlider = () => {
           )}
         </AnimatePresence>
       </div>
+      <HintToast message={showHint || ""} visible={!!showHint} />
     </motion.div>
   );
 };

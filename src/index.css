@@ -85,6 +85,13 @@
     cursor: default;
   }
 
+  button:focus,
+  button:active,
+  button:visited {
+    outline: none;
+    border: none;
+  }
+
   .text-type {
     display: inline-block;
     white-space: pre-wrap;
