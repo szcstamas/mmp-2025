@@ -18,9 +18,7 @@ const CharactersPage = () => {
     >
       <PageHeadline
         hl="Szereplők"
-        p="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
-          similique fuga accusamus? Tempore numquam itaque quod iusto quibusdam
-          repudiandae obcaecati."
+        p="Ismerd meg a kúria vendégeit és személyzetét – mindegyiküknek megvan a maga múltja, motivációja és titka. Figyeld meg a viselkedésüket, mert bárki gyanússá válhat a játék során. Egyikük azonban többet rejteget, mint a többiek…"
       />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-8 p-4">
         {characters.map((char, index) => (

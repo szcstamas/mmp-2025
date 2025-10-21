@@ -2,8 +2,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { floorImages } from "../constants/floorImages";
 import { floors } from "../constants/floors";
-import ClueCard from "../components/ClueCard";
+import ClueModal from "./ClueModal";
 import { useBag } from "../hooks/useBag";
+import ShinyText from "./ShinyText";
+import ChevronLeftIcon from "./icons/ChevronLeftIcon";
+import ChevronRightIcon from "./icons/ChevronRightIcon";
+import QuestionMark from "./icons/QuestionMark";
+import CheckmarkIcon from "./icons/CheckmarkIcon";
 
 const variants = {
   enter: (direction: number) => ({
@@ -67,8 +72,12 @@ const FloorSlider = () => {
               className="absolute w-full h-full object-cover rounded-2xl"
             />
 
-            <div className="absolute font-libre-bold top-4 left-1/2 -translate-x-1/2 text-paper text-2xl font-bold bg-tint/80 px-6 py-2">
-              {floors[index].title}
+            <div className="absolute font-libre-bold top-4 left-1/2 -translate-x-1/2 text-2xl font-bold bg-tint/80 px-6 py-2">
+              <ShinyText
+                text={floors[index].title}
+                disabled={false}
+                speed={3}
+              />
             </div>
 
             {floors[index].clues.map((c) => {
@@ -77,12 +86,35 @@ const FloorSlider = () => {
               return (
                 <div
                   key={c.clue.title}
-                  className={`absolute w-5 h-5 ${
-                    found ? "bg-green-500" : "bg-red-500"
-                  } rounded-full cursor-pointer border-2 border-tint transition-all duration-500 hover:bg-paper hover:border-tint hover:scale-150 hover:sepia`}
+                  className="absolute flex items-center justify-center"
                   style={{ top: c.top, left: c.left }}
-                  onClick={() => setSelectedClue(c)}
-                />
+                >
+                  <span
+                    className={`absolute inline-flex w-5 h-5 rounded-full ${
+                      found ? "bg-green-500" : "bg-paper"
+                    } opacity-50 animate-ping`}
+                  />
+                  <div
+                    className={`group relative w-5 h-5 rounded-full border-2 border-tint cursor-pointer transition-all duration-500 ${
+                      found ? "bg-green-500" : "bg-paper"
+                    } hover:border-tint hover:scale-[2.5]`}
+                    onClick={() => setSelectedClue(c)}
+                  >
+                    {found ? (
+                      <CheckmarkIcon
+                        className="absolute fill-tint pointer-events-none opacity-0 transition-all duration-1000 scale-0 group-hover:opacity-100 group-hover:scale-[0.35] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                        width="25px"
+                        height="25px"
+                      />
+                    ) : (
+                      <QuestionMark
+                        className="absolute fill-tint pointer-events-none opacity-0 transition-all duration-1000 scale-0 group-hover:opacity-100 group-hover:scale-[0.35] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                        width="25px"
+                        height="25px"
+                      />
+                    )}
+                  </div>
+                </div>
               );
             })}
           </motion.div>
@@ -90,16 +122,16 @@ const FloorSlider = () => {
 
         <button
           onClick={prev}
-          className="absolute -left-0 top-1/2 -translate-y-1/2 bg-tint/80 hover:bg-tint p-3 rounded-full transition"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-tint/80 hover:bg-tint p-3 rounded-full transition"
         >
-          Balra
+          <ChevronLeftIcon width="30px" className="stroke-paper" />
         </button>
 
         <button
           onClick={next}
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-tint/80 hover:bg-tint p-3 rounded-full transition"
         >
-          Jobbra
+          <ChevronRightIcon width="30px" className="stroke-paper" />
         </button>
 
         <div className="absolute bottom-0 w-full flex justify-center gap-2">
@@ -107,8 +139,8 @@ const FloorSlider = () => {
             <div
               key={i}
               onClick={() => setIndex(i)}
-              className={`h-3 w-3 rounded-full cursor-pointer transition ${
-                i === index ? "bg-white" : "bg-gray-500"
+              className={`h-3 w-3 rounded-full cursor-pointer transition border-2 border-tint ${
+                i === index ? "bg-white" : "bg-tint"
               }`}
             />
           ))}
@@ -131,7 +163,7 @@ const FloorSlider = () => {
                 transition={{ duration: 0.4 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <ClueCard
+                <ClueModal
                   clue={selectedClue.clue}
                   found={hasItem(selectedClue.clue.title)}
                   addItem={addItem}

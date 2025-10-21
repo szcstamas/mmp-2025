@@ -13,9 +13,7 @@ const HomePage = () => {
     >
       <PageHeadline
         hl="Kúria"
-        p="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
-          similique fuga accusamus? Tempore numquam itaque quod iusto quibusdam
-          repudiandae obcaecati."
+        p="Fedezd fel a sötét titkokat rejtő nemesi kúriát! Barangolj az épület szintjein, kutass elrejtett nyomok után, és találd meg azokat a részleteket, amelyek segíthetnek leleplezni Zoknászki gróf gyilkosát. Minden ajtó mögött újabb titok vár."
       />
       <FloorSlider />
     </motion.div>

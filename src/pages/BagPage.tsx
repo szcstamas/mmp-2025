@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import PageHeadline from "../components/PageHeadline";
 import { useBag } from "../hooks/useBag";
+import ClueCard from "../components/ClueCard";
 
 const BagPage = () => {
-  const { bag, removeItem } = useBag();
+  const { bag } = useBag();
 
   return (
     <motion.div
@@ -15,32 +16,14 @@ const BagPage = () => {
     >
       <PageHeadline
         hl="Táska"
-        p="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
-          similique fuga accusamus? Tempore numquam itaque quod iusto quibusdam
-          repudiandae obcaecati."
+        p="Itt gyűlnek össze a nyomok, amiket a kúriában találtok. Tekintsétek meg együtt a nyomokat és próbáljatok meg felfedezni minél több összefüggést. Talán épp egy apró részlet vezet el a gyilkos kilétéhez?"
       />
       {bag.length === 0 ? (
         <p>A táskád még üres...</p>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {bag.map((item) => (
-            <div
-              key={item.title}
-              className="bg-gray-800 p-6 rounded-2xl shadow-lg text-white max-w-sm"
-            >
-              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
-              <p className="text-sm opacity-80 mb-2">{item.description}</p>
-              <p className="text-xs text-gray-400 italic mb-4">
-                Helyszín: {item.location}
-              </p>
-
-              <button
-                onClick={() => removeItem(item.title)}
-                className="w-full bg-red-600 hover:bg-red-700 py-2 rounded-lg font-semibold transition"
-              >
-                Törlés ❌
-              </button>
-            </div>
+            <ClueCard key={item.title} clue={item} />
           ))}
         </div>
       )}

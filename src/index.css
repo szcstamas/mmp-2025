@@ -51,7 +51,7 @@
 
   body {
     background-color: var(--color-paper);
-    background-image: url("/public/img/body-bg.jpg");
+    background-image: url("/img/body-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -68,8 +68,10 @@
   }
 
   p,
-  span,
   a,
+  ul,
+  ol,
+  li,
   button {
     font-family: "SpaceGrotesk Regular", Arial, Helvetica, sans-serif;
     font-size: 1em;
@@ -81,5 +83,48 @@
   h4,
   p {
     cursor: default;
+  }
+
+  .text-type {
+    display: inline-block;
+    white-space: pre-wrap;
+  }
+
+  .text-type__cursor {
+    margin-left: 0.25rem;
+    display: inline-block;
+    opacity: 1;
+  }
+
+  .text-type__cursor--hidden {
+    display: none;
+  }
+
+  .shiny-text {
+    color: #b5b5b5a4;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 20%,
+      var(--color-paper),
+      rgba(255, 255, 255, 0) 40%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+    animation: shine 5s linear infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: -100%;
+    }
+  }
+
+  .shiny-text.disabled {
+    animation: none;
   }
 }
