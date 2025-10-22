@@ -114,13 +114,11 @@ const LoadingScreen = ({ onFinish }: LoadingScreenProps) => {
                   transition={{ duration: 0.5 }}
                   className="relative z-10 flex flex-col items-center gap-6"
                 >
-                  {/* Spinner */}
                   <motion.div
                     className="w-16 h-16 border-4 border-paper border-t-transparent rounded-full animate-spin"
                     transition={{ repeat: Infinity, ease: "linear" }}
                   />
 
-                  {/* Progress percentage */}
                   <motion.span
                     className="text-3xl font-bold text-paper font-libre-bold"
                     animate={{ opacity: 1, y: 0 }}
@@ -129,7 +127,6 @@ const LoadingScreen = ({ onFinish }: LoadingScreenProps) => {
                     {progress}%
                   </motion.span>
 
-                  {/* Progress bar */}
                   <div className="w-64 h-2 bg-paper/30 rounded-full overflow-hidden border-2 border-paper">
                     <motion.div
                       className="h-full bg-paper"
@@ -139,7 +136,6 @@ const LoadingScreen = ({ onFinish }: LoadingScreenProps) => {
                     />
                   </div>
 
-                  {/* Loading text */}
                   <p className="text-paper/80 text-sm tracking-wider mt-4">
                     Betöltés folyamatban...
                   </p>
