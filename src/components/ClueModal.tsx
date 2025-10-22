@@ -1,3 +1,4 @@
+import { useSound } from "../hooks/useSound";
 import type { Clue } from "../types/Clue";
 
 type ClueModalProps = {
@@ -14,6 +15,7 @@ const ClueModal: React.FC<ClueModalProps> = ({
   onClose,
 }) => {
   const { title, description, location, image } = clue;
+  const { playSound } = useSound();
 
   return (
     <div
@@ -46,7 +48,10 @@ const ClueModal: React.FC<ClueModalProps> = ({
         </button>
       ) : (
         <button
-          onClick={() => addItem(clue)}
+          onClick={() => {
+            playSound("storeItem");
+            addItem(clue);
+          }}
           className="w-full bg-green-700 text-white py-2 rounded-lg transition"
         >
           Hozzáadom a táskához! 🔎

@@ -11,6 +11,7 @@ import QuestionMark from "./icons/QuestionMark";
 import CheckmarkIcon from "./icons/CheckmarkIcon";
 import HintToast from "./HintToast";
 import { clueReactions } from "../constants/clueReactions";
+import { useSound } from "../hooks/useSound";
 
 const variants = {
   enter: (direction: number) => ({
@@ -20,12 +21,12 @@ const variants = {
   center: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeInOut" },
+    transition: { duration: 3, ease: "easeInOut" },
   },
   exit: (direction: number) => ({
     x: direction > 0 ? -300 : 300,
     opacity: 0,
-    transition: { duration: 0.6, ease: "easeInOut" },
+    transition: { duration: 3, ease: "easeInOut" },
   }),
 };
 
@@ -37,15 +38,21 @@ const FloorSlider = () => {
     top: string;
     left: string;
   } | null>(null);
-  const handleClose = () => setSelectedClue(null);
+  const handleClose = () => {
+    playSound("checkItem");
+    setSelectedClue(null);
+  };
   const { addItem, hasItem } = useBag();
   const [showHint, setShowHint] = useState<string | null>(null);
+  const { playSound } = useSound();
 
   const next = () => {
+    playSound("doorOpenCloses");
     setDirection(1);
     setIndex((prev) => (prev + 1) % floorImages.length);
   };
   const prev = () => {
+    playSound("doorOpenCloses");
     setDirection(-1);
     setIndex((prev) => (prev - 1 + floorImages.length) % floorImages.length);
   };
@@ -54,8 +61,12 @@ const FloorSlider = () => {
 
     const reaction = clueReactions[clue.title];
     if (reaction) {
-      setShowHint(reaction);
-      setTimeout(() => setShowHint(null), 3500);
+      setTimeout(() => {
+        playSound("newClueAppeared");
+        setShowHint(reaction);
+
+        setTimeout(() => setShowHint(null), 5000);
+      }, 2000);
     }
 
     // const newlyUnlocked = floors[index].clues.find(
@@ -123,7 +134,10 @@ const FloorSlider = () => {
                       className={`group relative w-5 h-5 rounded-full border-2 border-tint cursor-pointer transition-all duration-500 ${
                         found ? "bg-green-500" : "bg-paper"
                       } hover:border-tint hover:scale-[2.5]`}
-                      onClick={() => setSelectedClue(c)}
+                      onClick={() => {
+                        playSound("defaultClick");
+                        setSelectedClue(c);
+                      }}
                     >
                       {found ? (
                         <CheckmarkIcon

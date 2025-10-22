@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Clue } from "../types/Clue";
 import ImageModal from "./ImageModal";
 import { AnimatePresence, motion } from "framer-motion";
+import { useSound } from "../hooks/useSound";
 
 type ClueCardProps = {
   clue: Clue;
@@ -10,6 +11,7 @@ type ClueCardProps = {
 const ClueCard: React.FC<ClueCardProps> = ({ clue }) => {
   const { title, description, location, image } = clue;
   const [showModal, setShowModal] = useState(false);
+  const { playSound } = useSound();
 
   return (
     <div
@@ -37,7 +39,10 @@ const ClueCard: React.FC<ClueCardProps> = ({ clue }) => {
       </div>
 
       <button
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          playSound("checkItem");
+          setShowModal(true);
+        }}
         className="w-full text-tint bg-paper hover:bg-paper/80 py-2 rounded-lg transition"
       >
         Nyom megtekintése
@@ -61,7 +66,13 @@ const ClueCard: React.FC<ClueCardProps> = ({ clue }) => {
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <ImageModal image={image} onClose={() => setShowModal(false)} />
+              <ImageModal
+                image={image}
+                onClose={() => {
+                  playSound("storeItem");
+                  setShowModal(false);
+                }}
+              />
             </motion.div>
           </motion.div>
         )}

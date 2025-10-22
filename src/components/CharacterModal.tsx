@@ -20,6 +20,14 @@ const modal = {
   exit: { opacity: 0, scale: 0.85, y: -40 },
 };
 
+const flash = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: [1, 0],
+    transition: { duration: 1, ease: "easeOut" },
+  },
+};
+
 const CharacterModal: FC<CharacterModalProps> = ({
   onClose,
   name,
@@ -35,6 +43,12 @@ const CharacterModal: FC<CharacterModalProps> = ({
       exit="exit"
       onClick={onClose}
     >
+      <motion.div
+        className="absolute inset-0 bg-white z-10 pointer-events-none"
+        variants={flash}
+        initial="hidden"
+        animate="visible"
+      />
       <motion.div
         className="bg-paper text-tint rounded-2xl p-8 shadow-2xl relative max-w-lg w-full flex flex-col justify-center items-start gap-4"
         variants={modal}

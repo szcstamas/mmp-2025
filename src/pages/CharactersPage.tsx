@@ -3,10 +3,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { characters } from "../constants/characters";
 import PageHeadline from "../components/PageHeadline";
 import CharacterModal from "../components/CharacterModal";
+import { useSound } from "../hooks/useSound";
 
 const CharactersPage = () => {
   const [selected, setSelected] = useState<number | null>(null);
-  const handleClose = () => setSelected(null);
+  const { playSound } = useSound();
+  const handleClose = () => {
+    playSound("defaultClick");
+    setSelected(null);
+  };
 
   return (
     <motion.div
@@ -34,7 +39,10 @@ const CharactersPage = () => {
               ease: "easeOut",
             }}
             className="cursor-pointer group relative"
-            onClick={() => setSelected(index)}
+            onClick={() => {
+              playSound("cameraClick");
+              setSelected(index);
+            }}
           >
             <img
               src={char.image}

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Decoration from "../assets/img/others/Decoration.png";
+import Decoration from "../assets/img/others/Decoration.webp";
 
 type HintToastProps = {
   message: string;
