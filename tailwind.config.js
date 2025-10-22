@@ -29,7 +29,7 @@ module.exports = {
         tint: "#211D14",
       },
       animation: {
-        float: "float 4s linear infinite",
+        float: "float 4s ease-in-out infinite",
       },
       keyframes: {
         float: {

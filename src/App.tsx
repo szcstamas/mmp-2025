@@ -16,7 +16,7 @@ export default function App() {
     setLoaded(true);
     setTimeout(() => {
       playSound("fullGameMusicLoop", { loop: true, volume: 0.5 });
-    }, 1500);
+    }, 2000);
   };
 
   return (

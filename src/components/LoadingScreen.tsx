@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import LoadingVideo from "../assets/videos/loadingscreen.mp4";
+import LoadingVideo from "../assets/videos/loading-screen02.mp4";
 import { useSound } from "../hooks/useSound";
 import Logo from "../assets/img/others/Logo.webp";
 import GlareHover from "./GlareHover";
@@ -137,7 +137,7 @@ const LoadingScreen = ({ onFinish }: LoadingScreenProps) => {
                   </div>
 
                   <p className="text-paper/80 text-sm tracking-wider mt-4">
-                    Betöltés folyamatban...
+                    A kúria ajtói megnyitottak...
                   </p>
                 </motion.div>
               )}
