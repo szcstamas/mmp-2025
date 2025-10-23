@@ -72,7 +72,7 @@ const ClueModal: React.FC<ClueModalProps> = ({
                 addItem(clue);
               }}
             />
-          ) : clue.requiresMiniGame === "pumpkin" ? (
+          ) : clue.requiresMiniGame === "findTheItem" ? (
             <PumpkinFinderGame
               onComplete={() => {
                 playSound("storeItem");

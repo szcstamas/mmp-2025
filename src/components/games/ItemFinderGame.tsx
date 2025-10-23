@@ -124,7 +124,7 @@ const ItemFinderGame = ({ onComplete }: { onComplete: () => void }) => {
                   {isPumpkin && (showStartHint || reveal) && (
                     <motion.img
                       src={SkullImage}
-                      alt="Pumpkin"
+                      alt="findTheItem"
                       className="absolute w-auto h-16 -bottom-2 z-20"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}

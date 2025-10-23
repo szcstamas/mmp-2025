@@ -49,7 +49,7 @@ const CharactersPage = () => {
               alt={char.name}
               className="rounded-2xl shadow-2xl w-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:sepia group-hover:rounded-none"
             />
-            <div className="font-libre-bold absolute bottom-6 left-1/2 -translate-x-1/2 bg-[url(/img/footer-bg.jpg)] bg-cover bg-paper text-tint p-4 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center text-xl font-semibold">
+            <div className="font-libre-bold text-center absolute bottom-6 left-1/2 -translate-x-1/2 bg-[url(/img/footer-bg.jpg)] bg-cover bg-paper text-tint p-4 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center text-xl font-semibold">
               {char.name}
             </div>
           </motion.div>
@@ -62,6 +62,7 @@ const CharactersPage = () => {
             key="character-modal"
             onClose={handleClose}
             name={characters[selected].name}
+            title={characters[selected].title}
             description={characters[selected].description}
             image={characters[selected].image}
           />

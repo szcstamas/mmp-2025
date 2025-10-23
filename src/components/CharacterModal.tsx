@@ -4,6 +4,7 @@ import type { FC } from "react";
 type CharacterModalProps = {
   onClose: () => void;
   name: string;
+  title: string;
   description: string;
   image: string;
 };
@@ -31,6 +32,7 @@ const flash = {
 const CharacterModal: FC<CharacterModalProps> = ({
   onClose,
   name,
+  title,
   description,
   image,
 }) => {
@@ -72,6 +74,9 @@ const CharacterModal: FC<CharacterModalProps> = ({
         />
 
         <h2 className="text-3xl font-semibold mt-3">{name}</h2>
+        <p className="text-sm text-tint/60 tracking-widest uppercase">
+          {title}
+        </p>
         <p className="text-tint leading-relaxed">{description}</p>
       </motion.div>
     </motion.div>

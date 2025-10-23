@@ -4,5 +4,5 @@ export interface Clue {
   location: string;
   image: string;
   requires?: string;
-  requiresMiniGame?: "lock" | "spotlight" | "pumpkin";
+  requiresMiniGame?: "lock" | "spotlight" | "findTheItem";
 }
