@@ -3,7 +3,6 @@ import { useCallback } from "react";
 
 type SoundName =
   | "fullGameMusicLoop"
-  | "buttonClick"
   | "newClueAppeared"
   | "navClick"
   | "turnPage"
@@ -11,6 +10,9 @@ type SoundName =
   | "storeItem"
   | "checkItem"
   | "femaleThroatClearing"
+  | "wonTurn"
+  | "lostTurn"
+  | "gameRunning"
   | "cameraClick"
   | "defaultClick";
 
@@ -21,7 +23,6 @@ type PlaySoundOptions = {
 
 const soundMap: Record<SoundName, string> = {
   fullGameMusicLoop: "/src/assets/sounds/fullGameMusicLoop.mp3",
-  buttonClick: "/src/assets/sounds/onButtonClick.mp3",
   newClueAppeared: "/src/assets/sounds/newClueAppeared.mp3",
   navClick: "/src/assets/sounds/navLinksSound.mp3",
   turnPage: "/src/assets/sounds/turnPage.mp3",
@@ -29,6 +30,9 @@ const soundMap: Record<SoundName, string> = {
   storeItem: "/src/assets/sounds/storeItem.mp3",
   checkItem: "/src/assets/sounds/checkItem.mp3",
   femaleThroatClearing: "/src/assets/sounds/femaleThroatClearing.mp3",
+  wonTurn: "/src/assets/sounds/wonTurn.mp3",
+  lostTurn: "/src/assets/sounds/lostTurn.mp3",
+  gameRunning: "/src/assets/sounds/gameRunning.mp3",
   cameraClick: "/src/assets/sounds/cameraClick.mp3",
   defaultClick: "/src/assets/sounds/defaultClick.mp3",
 };

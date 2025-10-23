@@ -9,6 +9,7 @@ export const clues = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam reprehenderit atque aperiam veniam commodi cupiditate in laborum maxime exipsa!",
     location: "Étkező",
     image: Feather,
+    requiresMiniGame: "pumpkin",
   },
   {
     title: "Üzbég levél",
@@ -17,6 +18,7 @@ export const clues = [
     location: "Dolgozószoba",
     image: Letter,
     requires: "Fehér toll",
+    requiresMiniGame: "lock",
   },
   {
     title: "Kalapács",
@@ -25,5 +27,6 @@ export const clues = [
     location: "Műhely",
     image: Hammer,
     requires: "Üzbég levél",
+    requiresMiniGame: "spotlight",
   },
 ];

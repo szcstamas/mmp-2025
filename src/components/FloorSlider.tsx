@@ -89,7 +89,7 @@ const FloorSlider = () => {
       transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
       className="flex items-center justify-center text-white w-full"
     >
-      <div className="relative w-full max-w-[900px] aspect-video overflow-hidden rounded-2xl">
+      <div className="relative w-full max-w-[1080px] min-h-[580px] aspect-video overflow-hidden rounded-2xl">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={index}
