@@ -13,7 +13,7 @@ const HomePage = () => {
     >
       <PageHeadline
         hl="Kúria"
-        p="Fedezd fel a sötét titkokat rejtő nemesi kúriát! Barangolj az épület szintjein, kutass elrejtett nyomok után, és találd meg azokat a részleteket, amelyek segíthetnek leleplezni Zoknászki gróf gyilkosát. Minden ajtó mögött újabb titok vár."
+        p="Fedezd fel a sötét titkokat rejtő nemesi kúriát! Barangolj az épület szintjein, kutass elrejtett nyomok után, és találd meg azokat a részleteket, amelyek segíthetnek leleplezni Spiczfalvy gróf gyilkosát. Minden ajtó mögött újabb titok vár."
       />
       <FloorSlider />
     </motion.div>
