@@ -52,7 +52,7 @@ const SpotlightGame: React.FC<SpotlightGameProps> = ({ image, onComplete }) => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onClick={handleClick}
-      className="relative w-full h-64 overflow-hidden rounded-lg border-2 border-tint cursor-crosshair select-none"
+      className="relative w-[60rem] h-[40rem] overflow-hidden rounded-lg border-2 border-tint cursor-crosshair select-none"
       style={{
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",

@@ -18,6 +18,7 @@ export function useBag() {
   }, [bag]);
 
   const addItem = (item: Clue) => {
+    if (!item) return;
     if (!bag.some((i) => i.title === item.title)) {
       setBag((prev) => [...prev, item]);
     }

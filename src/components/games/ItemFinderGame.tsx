@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import HatImage from "../../assets/img/others/Hat.png";
 import SkullImage from "../../assets/img/others/Skull.png";
@@ -24,6 +24,19 @@ const ItemFinderGame = ({ onComplete }: { onComplete: () => void }) => {
   const [reveal, setReveal] = useState(false);
   const [showStartHint, setShowStartHint] = useState(false);
   const { playSound } = useSound();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -98,12 +111,14 @@ const ItemFinderGame = ({ onComplete }: { onComplete: () => void }) => {
           />
           <h4 className="font-libre-bold text-2xl">Találd meg a tárgyat!</h4>
 
-          <div className="relative w-full max-w-2xl h-36 bg-transparent overflow-visible">
+          <div
+            ref={containerRef}
+            className="relative w-full max-w-2xl h-36 bg-transparent overflow-visible flex justify-center items-center"
+          >
             {hats.map((hatIndex, i) => {
               const hatWidth = 90;
               const totalWidth = (HAT_COUNT - 1) * hatWidth;
-              const containerWidth = 460;
-              const startX = (containerWidth - totalWidth) / 2;
+              const startX = (containerWidth - totalWidth) / 2 + 132;
               const isPumpkin = hatIndex === pumpkinIndex;
 
               return (
@@ -111,8 +126,7 @@ const ItemFinderGame = ({ onComplete }: { onComplete: () => void }) => {
                   key={hatIndex}
                   className="absolute bottom-6 w-20 h-20 flex items-center justify-center cursor-pointer"
                   animate={{
-                    left: i * hatWidth,
-                    x: `calc(-50% + ${startX}px)`,
+                    left: startX + i * hatWidth,
                   }}
                   transition={{ duration: SHUFFLE_SPEED, ease: "easeInOut" }}
                   onClick={() => {

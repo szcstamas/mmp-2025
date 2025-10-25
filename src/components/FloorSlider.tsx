@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { floorImages } from "../constants/floorImages";
 import { floors } from "../constants/floors";
@@ -10,8 +10,9 @@ import ChevronRightIcon from "./icons/ChevronRightIcon";
 import QuestionMark from "./icons/QuestionMark";
 import CheckmarkIcon from "./icons/CheckmarkIcon";
 import HintToast from "./HintToast";
-import { clueReactions } from "../constants/clueReactions";
 import { useSound } from "../hooks/useSound";
+import { clues } from "../constants/clues";
+0;
 
 const variants = {
   enter: (direction: number) => ({
@@ -42,8 +43,9 @@ const FloorSlider = () => {
     playSound("checkItem");
     setSelectedClue(null);
   };
-  const { addItem, hasItem } = useBag();
+  const { addItem, hasItem, bag } = useBag();
   const [showHint, setShowHint] = useState<string | null>(null);
+  const [hasUnlockedBookmark, setHasUnlockedBookmark] = useState(false);
   const { playSound } = useSound();
 
   const next = () => {
@@ -56,29 +58,51 @@ const FloorSlider = () => {
     setDirection(-1);
     setIndex((prev) => (prev - 1 + floorImages.length) % floorImages.length);
   };
+
+  console.log(clues);
+
   const handleAddItem = (clue: any) => {
     addItem(clue);
 
-    const reaction = clueReactions[clue.title];
-    if (reaction) {
+    const excludedTitles = [
+      "Rejtett számlakönyv",
+      "Francia nyelvű levél",
+      "Vérfoltos ruha",
+      "Nyomozó",
+      "Kutatási jegyzetek",
+      "Férfi lábnyomok a padláson",
+      "A tőr és a gyűrű",
+    ];
+
+    if (excludedTitles.includes(clue.title)) return;
+
+    const bookmarkUnlockers = ["Egy vérfoltos kesztyű", "Szemtanúi állítás"];
+
+    if (bookmarkUnlockers.includes(clue.title)) {
+      if (hasUnlockedBookmark) return;
+
+      setHasUnlockedBookmark(true);
+
       setTimeout(() => {
         playSound("newClueAppeared");
-        setShowHint(reaction);
-
+        setShowHint("Egy új nyom jelent meg valahol...");
         setTimeout(() => setShowHint(null), 5000);
       }, 2000);
+
+      return;
     }
 
-    // const newlyUnlocked = floors[index].clues.find(
-    //   (c) => c.clue.requires === clue.title && !hasItem(c.clue.title)
-    // );
+    setTimeout(() => {
+      playSound("newClueAppeared");
 
-    // if (newlyUnlocked) {
-    //   setTimeout(() => {
-    //     setShowHint(`Új nyom elérhető: ${newlyUnlocked.clue.title}! 🕵️`);
-    //     setTimeout(() => setShowHint(null), 3500);
-    //   }, 3500);
-    // }
+      if (clue.title === "A „könyvjelző”") {
+        setShowHint("Figyelem! Új nyomok jelentek meg!");
+      } else {
+        setShowHint("Egy új nyom jelent meg valahol...");
+      }
+
+      setTimeout(() => setShowHint(null), 5000);
+    }, 2000);
   };
 
   return (
@@ -115,7 +139,15 @@ const FloorSlider = () => {
             </div>
 
             {floors[index].clues
-              .filter((c) => !c.clue.requires || hasItem(c.clue.requires))
+              .filter((c) => {
+                if (!c.clue.requires) return true;
+
+                const requiredItems = Array.isArray(c.clue.requires)
+                  ? c.clue.requires
+                  : [c.clue.requires];
+
+                return requiredItems.some((req) => hasItem(req));
+              })
               .map((c) => {
                 const found = hasItem(c.clue.title);
 
