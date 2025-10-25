@@ -8,7 +8,7 @@ import ShinyText from "../ShinyText";
 import Decoration from "../../assets/img/others/Decoration.webp";
 
 const HAT_COUNT = 5;
-const SHUFFLE_TIMES = 16;
+const SHUFFLE_TIMES = 24;
 const SHUFFLE_SPEED = 0.4;
 
 const ItemFinderGame = ({ onComplete }: { onComplete: () => void }) => {

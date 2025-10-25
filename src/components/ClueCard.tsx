@@ -18,23 +18,23 @@ const ClueCard: React.FC<ClueCardProps> = ({ clue }) => {
       key={title}
       className="bg-tint p-8 rounded-2xl shadow-lg text-paper max-w-sm flex flex-col justify-between items-start"
     >
-      <div className="flex justify-between items-start gap-4">
-        <div className="flex-1">
-          <h2 className="text-3xl font-semibold mb-4">{title}</h2>
-          <p className="text-sm opacity-80 mb-2">{description}</p>
-          <div className="flex flex-col justify-center items-start gap-1 my-4">
+      <div className="flex flex-col justify-between items-start gap-4">
+        <div className="w-full">
+          <img
+            src={image}
+            alt=""
+            className="rounded-lg shadow-2xl border-2 border-page max-h-40 w-full object-cover"
+          />
+        </div>
+        <div className="flex flex-col justify-start items-start gap-4 pt-2 pb-6">
+          <h2 className="text-3xl font-semibold">{title}</h2>
+          <p className="text-sm opacity-80">{description}</p>
+          <div className="flex flex-col justify-center items-start gap-1">
             <p className="text-sm text-gray-200 opacity-80">Itt találtátok:</p>
             <p className="text-base text-white uppercase font-bold tracking-widest">
               {location}
             </p>
           </div>
-        </div>
-        <div className="flex-1">
-          <img
-            src={image}
-            alt=""
-            className="rounded-lg shadow-2xl border-2 border-page"
-          />
         </div>
       </div>
 

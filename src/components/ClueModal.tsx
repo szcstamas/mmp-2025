@@ -68,7 +68,7 @@ const ClueModal: React.FC<ClueModalProps> = ({
                 disabled
                 className="w-full bg-paper text-tint border-2 border-tint py-2 rounded-lg cursor-not-allowed"
               >
-                Nyom megtalálva! ✅
+                Ezt a nyom már a táskában van!
               </button>
             ) : (
               <button

@@ -59,11 +59,7 @@ const FloorSlider = () => {
     setIndex((prev) => (prev - 1 + floorImages.length) % floorImages.length);
   };
 
-  console.log(clues);
-
   const handleAddItem = (clue: any) => {
-    addItem(clue);
-
     const excludedTitles = [
       "Rejtett számlakönyv",
       "Francia nyelvű levél",
@@ -74,9 +70,24 @@ const FloorSlider = () => {
       "A tőr és a gyűrű",
     ];
 
-    if (excludedTitles.includes(clue.title)) return;
-
     const bookmarkUnlockers = ["Egy vérfoltos kesztyű", "Szemtanúi állítás"];
+
+    const newBagSize = bag.length + (hasItem(clue.title) ? 0 : 1);
+
+    addItem(clue);
+
+    if (newBagSize >= 21) {
+      setTimeout(() => {
+        playSound("wonTurn");
+        setShowHint(
+          "Szép munka! 👏 Az összes nyomot megtaláltátok! Itt az idő megtekinteni a táska tartalmát..."
+        );
+        setTimeout(() => setShowHint(null), 5000);
+      }, 2000);
+      return;
+    }
+
+    if (excludedTitles.includes(clue.title)) return;
 
     if (bookmarkUnlockers.includes(clue.title)) {
       if (hasUnlockedBookmark) return;
