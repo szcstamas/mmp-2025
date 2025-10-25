@@ -45,6 +45,7 @@ export const clues = [
     location: "Démétrius szobája",
     image: HiddenShelf,
     requires: "A „könyvjelző”",
+    requiresMiniGame: "anagram",
   },
   {
     title: "Szemtanúi állítás",
@@ -52,6 +53,7 @@ export const clues = [
       "Egy szolgáló azt látta, hogy Odeline és a Gróf rövid, feszültséggel teli párbeszédet folytattak a madárházban a gyilkosságot megelőző napon. A részleteket a szolgáló nem tudta, de azt tisztán hallotta, hogy a gróf azt mondta a grófnőnek, hogy „rosszul jársz, ha megint hátba szúrsz madárkám”.",
     location: "Konyha",
     image: WomanChef,
+    requiresMiniGame: "anagram",
   },
   {
     title: "Francia nyelvű levél",
@@ -60,6 +62,7 @@ export const clues = [
     location: "Odeline szobája",
     image: JewelleryTable,
     requires: "A „könyvjelző”",
+    requiresMiniGame: "spotlight",
   },
   {
     title: "Szolgálói vallomás",
@@ -67,6 +70,7 @@ export const clues = [
       "Az egyik szolgáló, azt állítja, a hét elején hallotta, amint Norelda és a férje telefonon keresztül veszekedett valamilyen „tartozásokról” és „pénzről, ami majd jön”.",
     location: "Matthieu szobája",
     image: MaidenSweeping,
+    requiresMiniGame: "code",
   },
   {
     title: "Vonatjegy és térkép Franciaország felé",
@@ -75,6 +79,7 @@ export const clues = [
     location: "Pince",
     image: TrainTicket,
     requires: "Szolgálói vallomás",
+    requiresMiniGame: "spotlight",
   },
   {
     title: "Vérfoltos ruha",
@@ -83,6 +88,7 @@ export const clues = [
     location: "Norelda szobája",
     image: BloodyWomanTop,
     requires: "Vonatjegy és térkép Franciaország felé",
+    requiresMiniGame: "findTheItem",
   },
   {
     title: "Kulcscsomó",
@@ -90,6 +96,7 @@ export const clues = [
       "A könyvtár kulcsának másolatát Edgar kabátjának zsebében találták. Állítása szerint a kulcsot a bátyja engedélyével tartotta magánál, de a körülmények így is terhelőnek tűnnek a többiek szemében.",
     location: "Konyha melletti gardrób",
     image: FoundKeys,
+    requiresMiniGame: "code",
   },
   {
     title: "Távírószalag",
@@ -98,6 +105,7 @@ export const clues = [
     location: "Nappali",
     image: MessagingMachine,
     requires: "Kulcscsomó",
+    requiresMiniGame: "anagram",
   },
   {
     title: "Nyomozó",
@@ -106,6 +114,7 @@ export const clues = [
     location: "Könyvtár",
     image: HiddenLetters,
     requires: "Távírószalag",
+    requiresMiniGame: "lock",
   },
   {
     title: "Lábnyomok",
@@ -113,6 +122,7 @@ export const clues = [
       "Friss, sáros férfilábnyomok a bejárati ajtó környékén, a méret és a mintázat Brunován csizmájához hasonló. De lehet, hogy Démétriusé – senki sem biztos benne.",
     location: "Nagy szalon",
     image: MuddySteps,
+    requiresMiniGame: "code",
   },
   {
     title: "Adósságokat igazoló számlák",
@@ -120,6 +130,7 @@ export const clues = [
       "Brunován orvosi kufferében számos magán életi és gyógyszerlaborból származó számla található. A dokumentumok egyértelműen mutatják: hatalmas összegeket költött messze többet, mint amit engedhetne magának.",
     location: "Bal szélső gardrób az emeleten",
     image: BiologicalBag,
+    requiresMiniGame: "spotlight",
   },
   {
     title: "Kutatási jegyzetek",
@@ -128,6 +139,7 @@ export const clues = [
     location: "Jobb oldali vendégszoba",
     image: BiologicalNotes,
     requires: "Adósságokat igazoló számlák",
+    requiresMiniGame: "anagram",
   },
   {
     title: "Szokatlanul meleg bor",
@@ -135,6 +147,7 @@ export const clues = [
       "A szakács észrevette, hogy a pincéből „frissen felhozott” bor meglepően meleg volt, az üvegen nem ült meg a pára. Azt is megjegyezte, hogy Matthieu reverendájának ujja poros és pókhálós volt.",
     location: "Konyha",
     image: FatChef,
+    requiresMiniGame: "code",
   },
   {
     title: "Boros doboz",
@@ -142,7 +155,8 @@ export const clues = [
       "A kápolna oltára mögött egy fából készült boros dobozt találtak, benne egy kis imádkozó pap-szoborral és egy félig leéget gyertyával. A hely szokatlannak tűnik — mintha valaki sietve próbált volna elrejteni, de miért?",
     location: "Kápolna",
     image: StatueInChest,
-    requires: "Szokatlanul meleg bor",
+    requires: "Férfi lábnyomok a padláson",
+    requiresMiniGame: "findTheItem",
   },
   {
     title: "Férfi lábnyomok a padláson",
@@ -150,7 +164,8 @@ export const clues = [
       "A padlás vastag porában férfilábnyomok rajzolódnak ki, egészen egy üres festménykeretig vezetve. A keretből valaki kivágta a képet — mintha fontos bizonyítékot próbált volna megsemmisíteni.",
     location: "Padlás",
     image: FootstepsWithFrame,
-    requires: "Boros doboz",
+    requires: "Szokatlanul meleg bor",
+    requiresMiniGame: "spotlight",
   },
   {
     title: "Régi szerelmes levél",
@@ -158,6 +173,7 @@ export const clues = [
       "A kandallóban a parázson egy megégett levél darabkái vannak 1893-ból a gróf aláírásával. A levél töredékes, de romantikus hangvételű, sajnos nem látszik kinek szólt…",
     location: "Szalon",
     image: BurntLetter,
+    requiresMiniGame: "anagram",
   },
   {
     title: "A festmény (1899-ből)",
@@ -166,6 +182,7 @@ export const clues = [
     location: "Padlás",
     image: NudePainting,
     requires: "Régi szerelmes levél",
+    requiresMiniGame: "findTheItem",
   },
   {
     title: "A titkos átjáró",
@@ -174,6 +191,7 @@ export const clues = [
     location: "Zélie szobája",
     image: HiddenDoor,
     requires: "A festmény (1899-ből)",
+    requiresMiniGame: "code",
   },
   {
     title: "A tőr és a gyűrű",
@@ -182,5 +200,6 @@ export const clues = [
     location: "Norelda szobája",
     image: KnifeAndRing,
     requires: "A titkos átjáró",
+    requiresMiniGame: "findTheItem",
   },
 ];

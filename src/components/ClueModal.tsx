@@ -5,6 +5,9 @@ import MiniLockGame from "./games/MinilockGame";
 import PumpkinFinderGame from "./games/ItemFinderGame";
 import SpotlightGame from "./games/SpotlightGame";
 import { useState } from "react";
+import AnagramGame from "./games/AnagramGame";
+import CodeEntryGame from "./games/CodeEntryGame";
+import { codeHints } from "../constants/codeHints";
 
 type ClueModalProps = {
   clue: Clue;
@@ -84,6 +87,56 @@ const ClueModal: React.FC<ClueModalProps> = ({
           </>
         ) : (
           <>
+            {clue.requiresMiniGame === "code" && (
+              <CodeEntryGame
+                codeTitle={codeHints[clue.title]?.codeTitle || clue.title}
+                hintText={
+                  codeHints[clue.title]?.hintText ||
+                  "Keresd a helyszínen a cetlit a kóddal!"
+                }
+                correctCode={codeHints[clue.title]?.correctCode || ""}
+                onComplete={() => {
+                  playSound("storeItem");
+                  setGameCompleted(true);
+                  addItem(clue);
+                }}
+              />
+            )}
+            {clue.requiresMiniGame === "anagram" && (
+              <AnagramGame
+                word={
+                  clue.title === "Szemtanúi állítás"
+                    ? "igazság"
+                    : clue.title === "Rejtett számlakönyv"
+                    ? "illegális"
+                    : clue.title === "Távírószalag"
+                    ? "morze"
+                    : clue.title === "Kutatási jegyzetek"
+                    ? "tüdőbaj"
+                    : clue.title === "Régi szerelmes levél"
+                    ? "kedvesem"
+                    : "titok"
+                }
+                anagram={
+                  clue.title === "Szemtanúi állítás"
+                    ? "ÁGASZIG"
+                    : clue.title === "Rejtett számlakönyv"
+                    ? "GÁLILIESL"
+                    : clue.title === "Távírószalag"
+                    ? "OMZRE"
+                    : clue.title === "Kutatási jegyzetek"
+                    ? "DJÜTBŐA"
+                    : clue.title === "Régi szerelmes levél"
+                    ? "SKDEEEVM"
+                    : "TIKOT"
+                }
+                onComplete={() => {
+                  playSound("storeItem");
+                  setGameCompleted(true);
+                  addItem(clue);
+                }}
+              />
+            )}
             {clue.requiresMiniGame === "lock" && (
               <MiniLockGame
                 onComplete={() => {

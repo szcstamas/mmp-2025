@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useSound } from "../../hooks/useSound";
 
 type SpotlightGameProps = {
   image: string;
@@ -9,6 +10,7 @@ const SpotlightGame: React.FC<SpotlightGameProps> = ({ image, onComplete }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const [found, setFound] = useState(false);
+  const { playSound } = useSound();
 
   //random spot
   const [target] = useState({
@@ -43,7 +45,7 @@ const SpotlightGame: React.FC<SpotlightGameProps> = ({ image, onComplete }) => {
 
   useEffect(() => {
     if (found) {
-      // ide jöhet hang, animáció stb.
+      playSound("wonTurn");
     }
   }, [found]);
 
@@ -72,7 +74,7 @@ const SpotlightGame: React.FC<SpotlightGameProps> = ({ image, onComplete }) => {
 
       {found && (
         <div className="absolute inset-0 flex items-center justify-center text-green-400 text-2xl font-bold bg-black/60 backdrop-blur-sm">
-          ✅ Megtaláltad!
+          Megvan a nyom!
         </div>
       )}
     </div>

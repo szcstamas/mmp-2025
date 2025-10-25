@@ -12,16 +12,16 @@ export default function App() {
   const [loaded, setLoaded] = useState(true);
   const { playSound } = useSound();
 
-  // const handleLoadingFinished = () => {
-  //   setLoaded(true);
-  //   setTimeout(() => {
-  //     playSound("fullGameMusicLoop", { loop: true, volume: 0.5 });
-  //   }, 2000);
-  // };
+  const handleLoadingFinished = () => {
+    setLoaded(true);
+    setTimeout(() => {
+      playSound("fullGameMusicLoop", { loop: true, volume: 0.5 });
+    }, 2000);
+  };
 
   return (
     <>
-      {/* {!loaded && <LoadingScreen onFinish={handleLoadingFinished} />} */}
+      {!loaded && <LoadingScreen onFinish={handleLoadingFinished} />}
       {loaded && (
         <Routes>
           <Route path="/" element={<HomePage />} />
