@@ -3,6 +3,7 @@ import FirstFloor from "../assets/img/floors/FirstFloor.png";
 import SecondFloor from "../assets/img/floors/SecondFloor.png";
 import Attic from "../assets/img/floors/Attic.png";
 import Basement from "../assets/img/floors/Basement.png";
+import { fakeClues } from "./fakeClues";
 
 export const floors = [
   {
@@ -17,6 +18,9 @@ export const floors = [
       { clue: clues[14], top: "47%", left: "11%" }, //szokatlanul meleg bor: konyha, sütő ✅
       { clue: clues[15], top: "75%", left: "42%" }, //boros doboz: kápolna, oltár ✅
       { clue: clues[17], top: "35.5%", left: "70%" }, //régi szerelmes levél: szalon, kandalló ✅
+      { clue: fakeClues[0], top: "60%", left: "15%" }, //üvegház 1 ✅
+      { clue: fakeClues[1], top: "75%", left: "30%" }, //üvegház 2 ✅
+      { clue: fakeClues[2], top: "54%", left: "84%" }, //jobb alsó étkező jobb szélső asztal ✅
     ],
   },
   {
@@ -33,6 +37,9 @@ export const floors = [
       { clue: clues[13], top: "38%", left: "60%" }, //kutatási jegyzetek: jobb oldali vendégszoba, ágy ✅
       { clue: clues[19], top: "65%", left: "24%" }, //a titkos átjáró: Zélie szobája, ajtó melletti komód ✅
       { clue: clues[20], top: "61%", left: "70%" }, //a tőr és a gyűrű: Norelda szobájához közelebbi fürdő, toalett ✅
+      { clue: fakeClues[3], top: "54%", left: "15%" }, //bal alsó szoba középen fent az asztalra ✅
+      { clue: fakeClues[4], top: "20%", left: "12%" }, //bal fent szoba, bal fent sarok ablak melletti asztal ✅
+      { clue: fakeClues[5], top: "62%", left: "54%" }, //könyvtár sakkasztal (jobbra az ajtó mellett) ✅
     ],
   },
   {
@@ -41,11 +48,19 @@ export const floors = [
     clues: [
       { clue: clues[16], top: "78%", left: "40%" }, //lábnyomok a padláson: padlás, üres keretek ✅
       { clue: clues[18], top: "12%", left: "35%" }, //aktfestmény: padlás, szövőgép mellett ✅
+      { clue: fakeClues[6], top: "60%", left: "20%" }, //bal oldalt a dobozokra ✅
+      { clue: fakeClues[7], top: "20%", left: "78%" }, //jobb oldal fent lévő sarok --> festmény (ablak alatt) ✅
+      { clue: fakeClues[8], top: "15%", left: "48%" }, //középen fent a szövőszéken ✅
     ],
   },
   {
     title: "Pince",
     image: Basement,
-    clues: [{ clue: clues[6], top: "78%", left: "73%" }], //vonatjegy: pince lépcső mögötti íróasztal ✅
+    clues: [
+      { clue: clues[6], top: "78%", left: "73%" }, //vonatjegy: pince lépcső mögötti íróasztal ✅
+      { clue: fakeClues[9], top: "35%", left: "6%" }, //bal felső sarok borosszekrény ✅
+      { clue: fakeClues[10], top: "26%", left: "48%" }, //letakart zongora középen ✅
+      { clue: fakeClues[11], top: "24%", left: "86%" }, //jobb felső sarok a lomok között ✅
+    ],
   },
 ];

@@ -5,4 +5,5 @@ export interface Clue {
   image: string;
   requires?: string;
   requiresMiniGame?: "anagram" | "lock" | "spotlight" | "findTheItem" | "code";
+  fakeClue?: boolean;
 }

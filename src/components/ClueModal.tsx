@@ -44,7 +44,27 @@ const ClueModal: React.FC<ClueModalProps> = ({
           ✖
         </button>
 
-        {showInfo ? (
+        {clue.fakeClue ? (
+          <div className="flex justify-between items-start gap-4">
+            <div className="flex-1">
+              <h2 className="text-3xl font-semibold mb-4">{title}</h2>
+              <p className="text-sm opacity-80 mb-2">{description}</p>
+              <div className="flex flex-col justify-center items-start gap-1 my-4">
+                <p className="text-sm text-tint/80 opacity-80">Helyszín:</p>
+                <p className="text-base text-tint uppercase font-bold tracking-widest">
+                  {location}
+                </p>
+              </div>
+            </div>
+            <div className="flex-1">
+              <img
+                src={image}
+                alt=""
+                className="rounded-lg shadow-2xl border-2 border-tint"
+              />
+            </div>
+          </div>
+        ) : showInfo ? (
           <>
             <div className="flex justify-between items-start gap-4">
               <div className="flex-1">
