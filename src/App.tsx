@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useSound } from "./hooks/useSound";
 
 export default function App() {
-  const [loaded, setLoaded] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const { playSound } = useSound();
 
   const handleLoadingFinished = () => {
